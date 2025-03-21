@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prédiction de défaut</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Formulaire de prédiction</h2>
+        <form method="POST">
+            <label>Lignes de crédit en cours :</label><br>
+            <input type="number" step="any" name="credit_lines_outstanding" required min="0" max="50"><br><br>
+
+            <label>Montant du prêt en cours :</label><br>
+            <input type="number" step="any" name="loan_amt_outstanding" required min="0" max="1000000"><br><br>
+
+            <label>Dette totale en cours :</label><br>
+            <input type="number" step="any" name="total_debt_outstanding" required min="0" max="2000000"><br><br>
+
+            <label>Revenu :</label><br>
+            <input type="number" step="any" name="income" required min="10000" max="500000"><br><br>
+
+            <label>Années d'expérience :</label><br>
+            <input type="number" step="any" name="years_employed" required min="0" max="50"><br><br>
+
+            <label>Score FICO :</label><br>
+            <input type="number" step="any" name="fico_score" required min="300" max="850"><br><br>
+
+            <input type="submit" value="Prédire">
+        </form>
+
+        {% if prediction_text %}
+            <h3>Résultat : {{ prediction_text }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>
